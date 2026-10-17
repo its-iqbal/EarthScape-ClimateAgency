@@ -1,0 +1,38 @@
+{
+  "namenode": "namenode-master:9000",
+  "hdfs_uri": "hdfs://namenode-master:9000/user/hadoop/climate/raw/climate_historical.csv",
+  "created_at": "2026-10-16T18:26:13.528425Z",
+  "file_size_bytes": 64031,
+  "blocks": [
+    {
+      "block_id": "blk_1073741825_1001",
+      "pool_id": "BP-782419-127.0.0.1-1729112400000",
+      "size_bytes": 64031,
+      "replicas": [
+        "datanode-01",
+        "datanode-02",
+        "datanode-03"
+      ],
+      "md5": "2023c312a8f7a7f0c5528209ad641b5c",
+      "status": "HEALTHY"
+    }
+  ],
+  "partitions": {
+    "Karachi": {
+      "records": 366,
+      "hdfs_path": "/user/hadoop/climate/partitioned/Karachi/data.csv",
+      "size_bytes": 21700
+    },
+    "Lahore": {
+      "records": 366,
+      "hdfs_path": "/user/hadoop/climate/partitioned/Lahore/data.csv",
+      "size_bytes": 21221
+    },
+    "Islamabad": {
+      "records": 366,
+      "hdfs_path": "/user/hadoop/climate/partitioned/Islamabad/data.csv",
+      "size_bytes": 22369
+    }
+  },
+  "total_records": 1098
+}

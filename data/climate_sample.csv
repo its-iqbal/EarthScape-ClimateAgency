@@ -1,0 +1,11 @@
+date,location,avg_temp_c,rainfall_mm,humidity_pct
+2026-01-01,Karachi,24.5,0,55
+2026-01-02,Karachi,25.1,0,52
+2026-01-03,Lahore,16.8,2.5,68
+2026-01-04,Lahore,,5.0,75
+2026-01-05,Islamabad,12.4,1.2,80
+2026-01-06,Islamabad,13.1,,77
+2026-01-07,Karachi,26.0,0,50
+2026-01-08,Lahore,18.2,0,64
+2026-01-09,Islamabad,14.0,0.8,
+2026-01-10,Karachi,25.6,0,53

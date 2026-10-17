@@ -1,0 +1,191 @@
+[
+  {
+    "job_id": "job_1792176785562_007",
+    "job_name": "Monthly Climate Metrics Aggregation",
+    "job_type": "monthly",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:53:05.814702Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/monthly_summary/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 110.47,
+      "shuffle_sort_ms": 0.1,
+      "reduce_phase_ms": 138.84,
+      "total_duration_ms": 250.39
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 1431,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 36,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792176170041_006",
+    "job_name": "Monthly Climate Metrics Aggregation",
+    "job_type": "monthly",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:42:50.126593Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/monthly_summary/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 44.26,
+      "shuffle_sort_ms": 0.07,
+      "reduce_phase_ms": 39.14,
+      "total_duration_ms": 84.12
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 1431,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 36,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792175490818_005",
+    "job_name": "Climate Extremes & Outlier Aggregation",
+    "job_type": "extremes",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:31:31.029852Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/climate_extremes/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 96.98,
+      "shuffle_sort_ms": 0.1,
+      "reduce_phase_ms": 112.67,
+      "total_duration_ms": 210.49
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 113,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 3,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792175434630_004",
+    "job_name": "Monthly Climate Metrics Aggregation",
+    "job_type": "monthly",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:30:34.829153Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/monthly_summary/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 98.83,
+      "shuffle_sort_ms": 0.08,
+      "reduce_phase_ms": 98.51,
+      "total_duration_ms": 198.31
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 1431,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 36,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792175245095_003",
+    "job_name": "Monthly Climate Metrics Aggregation",
+    "job_type": "monthly",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:27:25.185706Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/monthly_summary/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 46.9,
+      "shuffle_sort_ms": 0.08,
+      "reduce_phase_ms": 42.26,
+      "total_duration_ms": 89.96
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 1431,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 36,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792175173631_002",
+    "job_name": "Climate Extremes & Outlier Aggregation",
+    "job_type": "extremes",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:26:13.721132Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/climate_extremes/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 42.31,
+      "shuffle_sort_ms": 0.08,
+      "reduce_phase_ms": 39.71,
+      "total_duration_ms": 82.74
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 113,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 3,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  },
+  {
+    "job_id": "job_1792175173521_001",
+    "job_name": "Monthly Climate Metrics Aggregation",
+    "job_type": "monthly",
+    "city_filter": "ALL",
+    "status": "SUCCEEDED",
+    "submitted_at": "2026-10-16T18:26:13.630890Z",
+    "input_path": "/user/hadoop/climate/raw/climate_historical.csv",
+    "output_path": "/user/hadoop/climate/output/monthly_summary/part-00000",
+    "execution_phases": {
+      "map_phase_ms": 48.29,
+      "shuffle_sort_ms": 0.07,
+      "reduce_phase_ms": 44.48,
+      "total_duration_ms": 108.96
+    },
+    "counters": {
+      "FILE_BYTES_READ": 64031,
+      "FILE_BYTES_WRITTEN": 1431,
+      "MAP_INPUT_RECORDS": 1098,
+      "MAP_OUTPUT_RECORDS": 1098,
+      "REDUCE_INPUT_RECORDS": 1098,
+      "REDUCE_OUTPUT_RECORDS": 36,
+      "MAP_SLOTS_USED": 3,
+      "REDUCE_SLOTS_USED": 1,
+      "DATANODES_INVOLVED": 3
+    }
+  }
+]
