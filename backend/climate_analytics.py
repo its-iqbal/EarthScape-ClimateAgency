@@ -61,13 +61,13 @@ def main():
         # Analyze the historical source separately from test data.
         records = list(
             readings.find(
-                {"source": "NASA POWER"},
+                {"source": {"$ne": "LIVE_STREAM_SENSOR"}},
                 {"_id": 0},
             ).sort([("location", 1), ("date", 1)])
         )
 
         if not records:
-            print("No NASA POWER records found.")
+            print("No historical climate records found.")
             return
 
         print("\n=== EARTHSCAPE CLIMATE ANALYTICS ===")

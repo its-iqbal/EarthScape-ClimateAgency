@@ -16,7 +16,7 @@ from math import cos, pi, sin, sqrt
 
 import numpy as np
 from sklearn.ensemble import IsolationForest
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 
@@ -28,32 +28,49 @@ from pymongo import MongoClient
 MONGO_URI  = "mongodb://localhost:27017"
 DATABASE   = "earthscape_climate"
 COLLECTION = "climate_readings"
-VALID_CITIES = {"Karachi", "Lahore", "Islamabad"}
+VALID_CITIES = {
+    "Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan", "Peshawar",
+    "Quetta", "Sialkot", "Gujranwala", "Hyderabad", "Sukkur", "Bahawalpur", "Sargodha",
+    "Abbottabad", "Swat", "Larkana", "Nawabshah", "Gwadar", "Turbat", "Gilgit", "Skardu",
+    "Muzaffarabad", "Mirpur", "Dera Ismail Khan"
+}
+
+
+def get_valid_cities():
+    try:
+        client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=1500)
+        cities = client[DATABASE][COLLECTION].distinct("location")
+        client.close()
+        return set(cities) if cities else VALID_CITIES
+    except Exception:
+        return VALID_CITIES
 
 
 # ── feature engineering ───────────────────────────────────────────────────────
 
 def _features_for_date(d):
     """
-    Three-feature vector per day:
-      - day_ordinal : days since 2024-01-01 (captures long-term trend)
-      - sin_month   : encodes the annual seasonal cycle (peak in summer)
-      - cos_month   : orthogonal seasonal component
+    Fourier harmonic seasonal feature vector:
+      - sin_1 : annual fundamental harmonic (365.25d cycle)
+      - cos_1 : orthogonal annual component
+      - sin_2 : semi-annual harmonic (monsoon & transition dynamics)
+      - cos_2 : orthogonal semi-annual component
     """
     if isinstance(d, str):
         d = date.fromisoformat(d)
-    base    = date(2024, 1, 1).toordinal()
-    ordinal = d.toordinal() - base
-    sin_m   = sin(2 * pi * d.month / 12)
-    cos_m   = cos(2 * pi * d.month / 12)
-    return [ordinal, sin_m, cos_m]
+    doy = d.timetuple().tm_yday
+    sin_1 = sin(2 * pi * doy / 365.25)
+    cos_1 = cos(2 * pi * doy / 365.25)
+    sin_2 = sin(4 * pi * doy / 365.25)
+    cos_2 = cos(4 * pi * doy / 365.25)
+    return [sin_1, cos_1, sin_2, cos_2]
 
 
 # ── model 1: seasonal linear regression ───────────────────────────────────────
 
 def build_prediction(city: str, days_ahead: int = 30) -> dict | None:
     """
-    Fit a seasonal linear regression for `city` and predict the
+    Fit a Fourier harmonic seasonal regression for `city` and predict the
     next `days_ahead` days.
 
     Returns a dict with keys:
@@ -61,8 +78,9 @@ def build_prediction(city: str, days_ahead: int = 30) -> dict | None:
       metrics (r2, mae, rmse, …)
     Returns None if there are fewer than 10 valid records.
     """
-    if city not in VALID_CITIES:
-        raise ValueError(f"City must be one of {sorted(VALID_CITIES)}")
+    allowed_cities = get_valid_cities()
+    if city not in allowed_cities:
+        raise ValueError(f"City '{city}' must be one of {sorted(allowed_cities)}")
 
     days_ahead = max(1, min(days_ahead, 90))
 
@@ -72,7 +90,7 @@ def build_prediction(city: str, days_ahead: int = 30) -> dict | None:
         records = list(
             client[DATABASE][COLLECTION]
             .find(
-                {"source": "NASA POWER", "location": city},
+                {"location": city},
                 {"_id": 0, "date": 1, "avg_temp_c": 1},
             )
             .sort("date", 1)
@@ -95,21 +113,22 @@ def build_prediction(city: str, days_ahead: int = 30) -> dict | None:
     X = np.array([_features_for_date(d) for d in dates])
     y = np.array(temps)
 
-    # 80/20 chronological split (minimum 10 test records)
+    # 80/20 chronological split
     split   = max(len(X) - max(30, int(len(X) * 0.2)), int(len(X) * 0.8))
     X_train, X_test = X[:split], X[split:]
     y_train, y_test = y[:split], y[split:]
 
-    model = LinearRegression()
+    model = Ridge(alpha=0.5)
     model.fit(X_train, y_train)
 
     y_pred_test = model.predict(X_test)
-    r2   = float(r2_score(y_test, y_pred_test))
-    mae  = float(mean_absolute_error(y_test, y_pred_test))
-    rmse = float(sqrt(mean_squared_error(y_test, y_pred_test)))
+    raw_r2 = float(r2_score(y_test, y_pred_test))
+    r2   = round(max(0.0, raw_r2), 4)
+    mae  = round(float(mean_absolute_error(y_test, y_pred_test)), 3)
+    rmse = round(float(sqrt(mean_squared_error(y_test, y_pred_test))), 3)
 
-    # Approximate 95 % prediction interval via ±1.96 × RMSE
-    margin = 1.96 * rmse
+    # Approximate 95% prediction interval via ±1.96 × RMSE
+    margin = round(1.96 * rmse, 2)
 
     last_date    = dates[-1]
     future_dates = [last_date + timedelta(days=i + 1) for i in range(days_ahead)]
@@ -172,7 +191,7 @@ def run_isolation_forest(contamination: float = 0.05) -> dict:
         client.admin.command("ping")
         records = list(
             client[DATABASE][COLLECTION]
-            .find({"source": "NASA POWER"}, {"_id": 0})
+            .find({}, {"_id": 0})
             .sort([("location", 1), ("date", 1)])
         )
     finally:

@@ -53,3 +53,5 @@ desktop.ini
 # Temporary & Cache Storage
 *.tmp
 .cache/
+data/backups/
+

@@ -23,36 +23,18 @@ db = client["earthscape_climate"]
 readings_col = db["climate_readings"]
 
 STATIONS = [
-    {
-        "id": "STA-KHI-01",
-        "name": "Karachi Coastal Observatory",
-        "city": "Karachi",
-        "lat": 24.8607,
-        "lon": 67.0011,
-        "base_temp": 28.5,
-        "base_humidity": 68.0,
-        "base_rain_prob": 0.08
-    },
-    {
-        "id": "STA-LHE-02",
-        "name": "Lahore Urban Center Station",
-        "city": "Lahore",
-        "lat": 31.5204,
-        "lon": 74.3587,
-        "base_temp": 25.0,
-        "base_humidity": 55.0,
-        "base_rain_prob": 0.12
-    },
-    {
-        "id": "STA-ISB-03",
-        "name": "Islamabad Margalla Foothills Radar",
-        "city": "Islamabad",
-        "lat": 33.6844,
-        "lon": 73.0479,
-        "base_temp": 20.5,
-        "base_humidity": 50.0,
-        "base_rain_prob": 0.18
-    }
+    {"id": "STA-KHI-01", "name": "Karachi Coastal Observatory", "city": "Karachi", "province": "Sindh", "lat": 24.8607, "lon": 67.0011, "base_temp": 28.5, "base_humidity": 68.0, "base_rain_prob": 0.08},
+    {"id": "STA-LHE-02", "name": "Lahore Urban Center Station", "city": "Lahore", "province": "Punjab", "lat": 31.5204, "lon": 74.3587, "base_temp": 25.0, "base_humidity": 55.0, "base_rain_prob": 0.12},
+    {"id": "STA-ISB-03", "name": "Islamabad Margalla Foothills Radar", "city": "Islamabad", "province": "Islamabad Capital Territory", "lat": 33.6844, "lon": 73.0479, "base_temp": 20.5, "base_humidity": 50.0, "base_rain_prob": 0.18},
+    {"id": "STA-PEW-04", "name": "Peshawar Valley Meteorological Station", "city": "Peshawar", "province": "Khyber Pakhtunkhwa", "lat": 34.0151, "lon": 71.5249, "base_temp": 22.8, "base_humidity": 48.0, "base_rain_prob": 0.14},
+    {"id": "STA-UET-05", "name": "Quetta Chiltan Highland Observatory", "city": "Quetta", "province": "Balochistan", "lat": 30.1798, "lon": 66.9750, "base_temp": 15.5, "base_humidity": 32.0, "base_rain_prob": 0.09},
+    {"id": "STA-MUX-06", "name": "Multan Solar Heat & Agri Monitor", "city": "Multan", "province": "Punjab", "lat": 30.1575, "lon": 71.5249, "base_temp": 27.5, "base_humidity": 45.0, "base_rain_prob": 0.07},
+    {"id": "STA-LYP-07", "name": "Faisalabad Industrial Belt Sensor", "city": "Faisalabad", "province": "Punjab", "lat": 31.4504, "lon": 73.1350, "base_temp": 25.2, "base_humidity": 52.0, "base_rain_prob": 0.10},
+    {"id": "STA-GWD-08", "name": "Gwadar Deep Sea Maritime Radar", "city": "Gwadar", "province": "Balochistan", "lat": 25.1216, "lon": 62.3254, "base_temp": 27.0, "base_humidity": 72.0, "base_rain_prob": 0.05},
+    {"id": "STA-GIL-09", "name": "Gilgit Karakoram Base Station", "city": "Gilgit", "province": "Gilgit-Baltistan", "lat": 35.9221, "lon": 74.3087, "base_temp": 14.0, "base_humidity": 40.0, "base_rain_prob": 0.11},
+    {"id": "STA-KDU-10", "name": "Skardu High-Altitude Glacier Post", "city": "Skardu", "province": "Gilgit-Baltistan", "lat": 35.2971, "lon": 75.6333, "base_temp": 9.5, "base_humidity": 45.0, "base_rain_prob": 0.15},
+    {"id": "STA-MFD-11", "name": "Muzaffarabad Neelum Basin Station", "city": "Muzaffarabad", "province": "Azad Jammu & Kashmir", "lat": 34.3700, "lon": 73.4711, "base_temp": 19.5, "base_humidity": 62.0, "base_rain_prob": 0.22},
+    {"id": "STA-SKZ-12", "name": "Sukkur Indus Barrage Observatory", "city": "Sukkur", "province": "Sindh", "lat": 27.7052, "lon": 68.8574, "base_temp": 29.0, "base_humidity": 46.0, "base_rain_prob": 0.06},
 ]
 
 class ClimateStreamManager:

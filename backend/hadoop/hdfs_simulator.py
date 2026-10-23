@@ -68,18 +68,20 @@ class HDFSSimulator:
             fout.write(content)
 
         # 2. Partition by location
-        rows_by_city = {"Karachi": [], "Lahore": [], "Islamabad": []}
+        rows_by_city = {}
         reader = csv.DictReader(content.splitlines())
         fieldnames = reader.fieldnames
 
         for row in reader:
-            loc = row.get("location")
-            if loc in rows_by_city:
-                rows_by_city[loc].append(row)
+            loc = row.get("location", "Unknown").strip()
+            if loc:
+                rows_by_city.setdefault(loc, []).append(row)
 
         partition_stats = {}
         for city, rows in rows_by_city.items():
-            part_file = self.root / "user" / "hadoop" / "climate" / "partitioned" / city / "data.csv"
+            city_dir = self.root / "user" / "hadoop" / "climate" / "partitioned" / city
+            city_dir.mkdir(parents=True, exist_ok=True)
+            part_file = city_dir / "data.csv"
             with open(part_file, "w", encoding="utf-8", newline="") as fout:
                 writer = csv.DictWriter(fout, fieldnames=fieldnames)
                 writer.writeheader()

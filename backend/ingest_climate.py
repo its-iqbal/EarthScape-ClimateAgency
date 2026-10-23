@@ -124,11 +124,16 @@ def main():
                 record = {
                     "date": record_date.isoformat(),
                     "location": location,
+                    "province": row.get("province", "").strip() or "Pakistan",
+                    "lat": float(row["lat"]) if row.get("lat") else None,
+                    "lon": float(row["lon"]) if row.get("lon") else None,
                     "avg_temp_c": avg_temp,
                     "min_temp_c": min_temp,
                     "max_temp_c": max_temp,
                     "rainfall_mm": rainfall,
                     "humidity_pct": humidity,
+                    "wind_speed_kmh": float(row["wind_speed_kmh"]) if row.get("wind_speed_kmh") else 12.0,
+                    "aqi": int(row["aqi"]) if row.get("aqi") else 100,
                     "source": (
                         row.get("source", "").strip()
                         or "NASA POWER"
