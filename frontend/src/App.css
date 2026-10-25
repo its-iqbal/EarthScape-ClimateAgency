@@ -4853,6 +4853,296 @@ button:disabled {
   color: #f1f5f9;
 }
 
+/* Live Sync Banner */
+.sync-banner {
+  background: rgba(64, 212, 155, 0.12) !important;
+  border-color: rgba(64, 212, 155, 0.35) !important;
+  color: #40d49b !important;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* AI Predictive Alert Warnings Panel & Cards */
+.predictive-alerts-panel {
+  margin-top: 22px;
+  background: rgba(13, 24, 40, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+}
+
+.pred-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pred-title-wrap h3 {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  color: #f8fafc;
+}
+
+.live-api-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #40d49b;
+  background: rgba(64, 212, 155, 0.12);
+  border: 1px solid rgba(64, 212, 155, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.predictive-alerts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  padding: 16px 20px 20px;
+}
+
+.pred-alert-card {
+  background: rgba(16, 29, 48, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pred-alert-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.pred-alert-card.critical {
+  border-left: 4px solid #ef4444;
+}
+
+.pred-alert-card.warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.pred-alert-card.advisory {
+  border-left: 4px solid #60c5f7;
+}
+
+.pred-alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pred-city-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #f8fafc;
+}
+
+.pred-risk-pill {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.pred-risk-pill.critical {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.pred-risk-pill.warning {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.pred-risk-pill.advisory {
+  background: rgba(96, 197, 247, 0.18);
+  color: #60c5f7;
+  border: 1px solid rgba(96, 197, 247, 0.35);
+}
+
+.pred-alert-body h4 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.pred-summary {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin: 0 0 10px;
+  line-height: 1.45;
+}
+
+.pred-telemetry-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.pred-lbl {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.pred-date-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #38bdf8;
+  font-size: 12px;
+}
+
+.pred-mitigation-box {
+  background: rgba(245, 158, 11, 0.05);
+  border-left: 3px solid #f59e0b;
+  padding: 6px 10px;
+  border-radius: 0 6px 6px 0;
+  margin-top: 4px;
+}
+
+.pred-mitigation-box p {
+  font-size: 11px;
+  color: #fde68a;
+  margin: 3px 0 0;
+  line-height: 1.35;
+}
+
+.pred-alert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #64748b;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+.pred-confidence strong {
+  color: #40d49b;
+}
+
+.pred-id-code {
+  font-family: monospace;
+  opacity: 0.8;
+}
+
+.pred-no-alerts-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(64, 212, 155, 0.06);
+  border: 1px solid rgba(64, 212, 155, 0.2);
+  padding: 18px 22px;
+  border-radius: 10px;
+  color: #94a3b8;
+}
+
+.pred-no-alerts-card strong {
+  color: #f1f5f9;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.pred-no-alerts-card p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* Alert View Tabs */
+.alert-view-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.alert-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: rgba(13, 24, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alert-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+}
+
+.alert-tab-btn.active {
+  background: rgba(64, 212, 155, 0.12);
+  border-color: rgba(64, 212, 155, 0.4);
+  color: #40d49b;
+}
+
+.pred-countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.thresh-label {
+  font-size: 10.5px;
+  color: #64748b;
+  font-weight: normal;
+}
+
+.conf-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #40d49b;
+  background: rgba(64, 212, 155, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.action-cell {
+  max-width: 280px;
+}
+
+.mitigation-text {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.35;
+}
+
+
 
 
 

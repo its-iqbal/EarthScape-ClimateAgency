@@ -363,6 +363,50 @@ def ml_models():
         return jsonify({"error": str(exc)}), 500
 
 
+@app.route("/api/ml/predict-alerts")
+def ml_predict_alerts():
+    """
+    Returns AI model forecasted upcoming meteorological alerts (heatwaves, cold snaps,
+    smog/inversion, heavy precipitation) over the next 7 to 30 days.
+    """
+    city = request.args.get("city", "All").strip()
+    try:
+        days = max(7, min(int(request.args.get("days", "30")), 90))
+    except ValueError:
+        days = 30
+
+    try:
+        from ml_predict import predict_all_upcoming_alerts, build_prediction
+        if city and city != "All":
+            pred = build_prediction(city, days)
+            alerts = pred.get("upcoming_alerts", []) if pred else []
+        else:
+            alerts = predict_all_upcoming_alerts(days)
+        return jsonify({
+            "alerts": alerts,
+            "count": len(alerts),
+            "forecast_horizon_days": days,
+            "city": city,
+        })
+    except Exception as exc:
+        return jsonify({"error": str(exc)}), 500
+
+
+@app.route("/api/sync/live", methods=["GET", "POST"])
+def sync_live_weather():
+    """
+    Triggers live API synchronization with Open-Meteo & Air Quality APIs
+    for all 25 Pakistani cities, storing real-time and recent 2026 data in MongoDB.
+    """
+    try:
+        from live_api_service import sync_all_cities_live_api
+        res = sync_all_cities_live_api(past_days=7, forecast_days=7)
+        return jsonify(res)
+    except Exception as exc:
+        return jsonify({"error": str(exc)}), 500
+
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # Phase 4 — Hadoop & MapReduce / HDFS Simulation Endpoints
 # ══════════════════════════════════════════════════════════════════════════════
